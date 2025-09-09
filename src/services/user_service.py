@@ -1,5 +1,7 @@
-from src.repositories import user_repository
 from datetime import datetime
+
+from src.repositories import user_repository
+
 
 def get_users(page: int, page_size: int, q: str = None, role: str = None, is_active: str = None):
     users = user_repository.find_all()
@@ -45,7 +47,7 @@ def get_users(page: int, page_size: int, q: str = None, role: str = None, is_act
             "page_size": page_size,
             "total": total,
             "total_pages": (total + page_size - 1) // page_size
-            
+
         }
     }
 
@@ -62,4 +64,3 @@ def get_user_by_id(user_id: int):
         "is_active": user["is_active"],
         "created_at": datetime.fromisoformat(user["created_at"].replace("Z", "+00:00")).isoformat()
     }
-
